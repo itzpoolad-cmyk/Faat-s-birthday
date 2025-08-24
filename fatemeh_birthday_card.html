@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کارت تولد فاطمه جان</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ffe6f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Tahoma", sans-serif;
+  }
+  .container {
+    text-align: center;
+  }
+  .heart {
+    width: 100px;
+    height: 90px;
+    background: red;
+    position: relative;
+    display: inline-block;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .heart:before,
+  .heart:after {
+    content: "";
+    width: 100px;
+    height: 90px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+  }
+  .heart:before {
+    top: -50px;
+    left: 0;
+  }
+  .heart:after {
+    left: 50px;
+    top: 0;
+  }
+  .heart:hover {
+    transform: scale(1.1) rotate(-45deg);
+  }
+  #message {
+    display: none;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 2;
+    color: #d63384;
+    white-space: pre-line;
+  }
+  .falling-heart {
+    position: absolute;
+    color: #ff4da6;
+    font-size: 20px;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-10vh); opacity: 1; }
+    100% { transform: translateY(110vh); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="heart" onclick="showMessage()"></div>
+    <div id="message">
+      فاطمه جانم، تولدت مبارک 💕<br>
+      امروز روزیه که دنیا با حضور تو قشنگ‌تر شد.<br>
+      بودن کنار تو برای من بزرگ‌ترین هدیه‌ست،<br>
+      و هر لحظه با تو پر از عشق و آرامشه.<br>
+      امیدوارم امسال برات پر از شادی، لبخند و رویاهات باشه.<br>
+      دوستت دارم تا همیشه ❤️
+    </div>
+  </div>
+
+<script>
+function showMessage() {
+  document.getElementById('message').style.display = 'block';
+  createHearts();
+}
+
+function createHearts() {
+  for (let i = 0; i < 30; i++) {
+    let heart = document.createElement("div");
+    heart.className = "falling-heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => { heart.remove(); }, 5000);
+  }
+}
+</script>
+</body>
+</html>
